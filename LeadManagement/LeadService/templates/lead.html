@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <title> Lead Management </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+    </style>
+</head>
+
+<body>
+    
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="header text-center">
+                <h2> Lead Management Tool </h2>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h4>Lead Name/ID That Got Selected</h4>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="col-12">
+                        <table class="table table-striped table-bordered">
+                            <thead class="thead-dark">
+                                {% for c in columns %}
+                                    {% if c == "csrfmiddlewaretoken" or c == "start_date" or c == "end_date" %}                                    
+                                    {% else %}
+                                        <th>{{c}}</th>
+                                    {% endif %}
+                                {% endfor %}
+                            </thead>
+                            <tbody>
+                                {% for d in data %}                                
+                                    <tr>
+                                    {% for c in columns %}
+                                        {% if c == "contact_person_name" %}
+                                            <td>{{ d.lead.contact_person_name}}</td>            
+                                        {% elif c == "phone_numer" %}
+                                            <td>{{ d.lead.phone_numer}}</td>                                                        
+                                        {% elif c == "address" %}                               
+                                            <td>{{ d.lead.address}}</td>                        
+                                        {% elif c == "source" %}                                                
+                                            <td>{{ d.lead.source}}</td>                                                                                                                                                            
+                                        {% elif c == "current_stage" %}                                                
+                                            <td>{{ d.lead.current_stage}}</td>                                      
+                                        {% else %}                                            
+                                        {% endif %}
+                                        {% endfor %}                                                                                  
+                                    </tr>
+                                {% endfor %}                                
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
